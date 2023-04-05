@@ -1,10 +1,8 @@
 i_{h}=\frac{w_{hm}(t)}{w_{hd}(t)}=\frac{\dot{w}_{hm}(t)}{\dot{w}_{hd}(t)}=\frac{T_{hd}(t)}{T_{hml}(t)}  [3]
 T_{hd}(t)=T_{hm}(t)*i_{h}+T_{hb}(t,(BRK_{h}))*i_{h}-b_{hm}*w_{hd}(t))*i_{h}^{2}-J_{hm+hb}*\dot{w}_{hd}(t))*i_{h}^{2}  [5]
 J_{hd+hEb}*\dot{w}_{hd}(t)=T_{hm}(t)*i_{h}+T_{hb}(t,(BRK_{h}))*i_{h}-b_{hm}*w_{hd}(t)*i_{h}^{2}-J_{hm+hb}*\dot{w}_{hd}(t)*i_{h}^{2}+T_{hEb}(t,BRK_{bE})-b_{hd}*w_{hd}(t)-T_{hdl}(t)  [6]
-
-T_{hdl}(t)=T_{hm}(t)*i_{h}+T_{hb}(t,(BRK_{h}))*i_{h}-b_{hm}*w_{hd}(t)*i_{h}^{2}-J_{hm+hb}*\dot{w}_{hd}(t)*i_{h}^{2}+T_{hEb}(t,BRK_{bE})-b_{hd}*w_{hd}(t)-J_{hd+hEb}*\dot{w}_{hd}(t)  [7]
-
-T_{hdl}(t)=T_{hm}(t)*i_{h}+T_{hb}(t,(BRK_{h}))*i_{h}-(b_{hm}*i_{h}^{2}+b_{hd})*\left(\frac{2*v_{h}(t)}{r_{hd}}\right)-(J_{hm+hb}*i_{h}^{2}+J_{hd+hEb})*\left(\frac{2*\dot{v}_{h}(t)}{r_{hd}}\right)+T_{hEb}(t,BRK_{bE})  [9]
-F_{hw}(t)=T_{hm}(t)*\left(\frac{i_{h}}{r_{hd}}\right)+T_{hb}(t,(BRK_{h}))*\left(\frac{i_{h}}{r_{hd}}\right)-(b_{hm}*i_{h}^{2}+b_{hd})*\left(\frac{2*v_{h}(t)}{r_{hd}^{2}}\right)-(J_{hm+hb}*i_{h}^{2}+J_{hd+hEb})*\left(\frac{2*\dot{v}_{h}(t)}{r_{hd}^{2}}\right)+T_{hEb}(t,BRK_{bE})*\left(\frac{1}{r_{hd}} \right )  [11]
-
-
+T_{hdl}(t)=F_{hw}(t)*r_{hd} [7]
+\left(J_{hd+hEb}+J_{hm+hb}*i_{h}^{2}\right)*\dot{w}_{hd}(t)=T_{hm}*i_{h}+T_{hb}*(t,(BRK_{h}))*i_{h}+T_{hEb}*(t,(BRK_{bE}))-\left(b_{hm}*i_{h}^{2}+b_{hd} \right )*w_{hd}(t)-F_{hd}(t)*r_{hd}  [9]
+\dot{y}_{h}(t)=\left(\frac{r_{hd}*\omega_{hd}(t)}{2} \right )=v_{h}(t)=-\dot{l}_{h}(t) [10]
+y_{h}(t)=\left(\frac{r_{hd}*\theta_{hd}(t)}{2} \right ) [11]
+\omega_{hd}(t)*i_{h}=\omega_{hm}(t) [12]
