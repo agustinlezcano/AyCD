@@ -22,6 +22,9 @@ bhm=18;%[N*m/rad/s]coef de friccion mecanica vizcosa eje rapido
 Thb_Max=5e4;%[N*m] torque maximo de freno de operacion
 tauhm=1e-3;%[ms] constante del modulador de torque
 Thm_Max=2e4;%[N*m] torque maximo de motorizacion
+%% Parametros equivalentes izaje
+Jh_eq=Jhm_hb*ih^2+Jhd_hEb; %[kg*m^2] momento de inercia equivalente de Izaje
+bh_eq=bhm*ih^2+bhd; %[N*m/rad/s] coeficiente de friccion equivalente de Izaje
 %% Parametros del cable de Izaje (wirerope)
 kwu=2.36e8;%(N/m)*m Rigidez unitaria de a traccion
 bwu=150;%[N/m/s]/m Friccion interna o vizcosa unitaria a traccion 
