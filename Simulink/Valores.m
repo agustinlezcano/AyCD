@@ -45,7 +45,5 @@ Ttb_Max=5e3; %[N.m] Torque máximo de frenado del Freno de operación
 tau_tm=1e-3; %[s] Constante de tiempo de Modulador de Torque en motor-drive de carro
 Ttm_Max=3e3; %[N.m] Torque máximo de motorización/frenado regenerativo del motor
 %Parámetros equivalentes
-Meq=(rtd*Mt*it-Jtd)/rtd;
-beq=(btd+rtd*bt*it)/rtd;
-Meqc=Meq+it;    %Es Meq+it*M2 ver que es M2->corregir
-beqc=it*btm/rtd+beq; %corregir
+Meq=Mt+(it^2*Jtm_tb+Jtd)/rtd^2;
+beq=bt+(btd+btm*it^2)/rtd^2;
