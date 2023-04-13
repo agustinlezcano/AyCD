@@ -47,3 +47,18 @@ Ttm_Max=3e3; %[N.m] Torque máximo de motorización/frenado regenerativo del mot
 %Parámetros equivalentes
 Meq=Mt+(it^2*Jtm_tb+Jtd)/rtd^2;
 beq=bt+(btd+btm*it^2)/rtd^2;
+%% Parametros PID carro/izaje
+n = 3;  %Sistema críticamente amortiguado. Igual en ambos
+pt = -beq/Meq;
+w_post = 10 * pt;
+Meq2 = Meq*rtd*n/it^2; %solo para obtener las constantes PID
+KPt = Meq2 * w_post;
+KIt = Meq2 * w_post^2;
+KDt = Meq2 * w_post^3;
+
+ph = -bh_eq/Jh_eq;  %Polo 1 a lazo abierto (izaje)
+w_posh = 10 * ph;
+Jeq2 = Jh_eq*n/ih^2; %solo para obtener las constantes PID
+KPh = Jeq2 * w_posh;
+KIh = Jeq2 * w_posh^2;
+KDh = Jeq2 * w_posh^3;
