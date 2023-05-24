@@ -52,16 +52,18 @@ Meq=Mt+(it^2*Jtm_tb+Jtd)/rtd^2;
 beq=bt+(btd+btm*it^2)/rtd^2;
 %% Parametros PID carro/izaje
 n = 3;  %Sistema críticamente amortiguado. Igual en ambos
-pt = -beq/Meq;
-w_post = 10 * pt;
-Meq2 = Meq*rtd*n/it^2; %solo para obtener las constantes PID
-KPt = Meq2 * w_post;
-KIt = Meq2 * w_post^2;
-KDt = Meq2 * w_post^3;
+pt = -beq/Meq*(it/rtd);%*(it/rtd);
+w_post = abs(10 * pt);
+%revisar Meq2
+Meq2 = Meq*n*(rtd/it^2); %solo para obtener las constantes PID
+KDt = Meq2 * w_post
+KPt = Meq2 * w_post^2
+KIt = Meq2 * w_post^3
 
 ph = -bh_eq/Jh_eq;  %Polo 1 a lazo abierto (izaje)
-w_posh = 10 * ph;
-Jeq2 = Jh_eq*n/ih^2; %solo para obtener las constantes PID
-KPh = Jeq2 * w_posh;
-KIh = Jeq2 * w_posh^2;
-KDh = Jeq2 * w_posh^3;
+w_posh = abs(10 * ph);
+%revisar Jeq2
+Jeq2 = Jh_eq*n*(1/ih^2); %solo para obtener las constantes PID
+KDh = Jeq2 * w_posh
+KPh = Jeq2 * w_posh^2
+KIh = Jeq2 * w_posh^3
