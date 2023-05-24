@@ -1,2 +1,3 @@
 # AyCD
-proyecto integrador de Autómatas de Control Discreto
+Proyecto integrador de Autómatas de Control Discreto
+## Control de operación de un puente grúa
