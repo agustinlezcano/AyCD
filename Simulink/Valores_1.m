@@ -5,7 +5,7 @@ bcx=1e6;%[N/m/s]
 bcy=1e7;%[N/m/s]
 kcy=1.8e9;%[N/m]
 Yt0=45;%[m]
-Hc=0;%[m]
+Hc=2.50;%[m] ¿2.5 m?
 Ms=1.5e4;%[kg]
 Mc_max=5e4;%[kg]
 Mc_min=2e3;%[kg]
@@ -67,3 +67,10 @@ Jeq2 = Jh_eq*n*(1/ih^2); %solo para obtener las constantes PID
 KDh = Jeq2 * w_posh
 KPh = Jeq2 * w_posh^2
 KIh = Jeq2 * w_posh^3
+
+%Perfil de obstaculos
+hMax = 10;
+
+%Velocidades/aceleraciones maximas carro/izaje
+whmMax = (3*2/rhd)*ih; %rad/s
+wtmMax = (4/rtd)*it; %obtener de vt carro
