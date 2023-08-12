@@ -71,6 +71,10 @@ KIh = Jeq2 * w_posh^3
 %Perfil de obstaculos
 hMax = 10;
 
+P = 956.15e3; %Potencia cte: 956.15 kW
+
 %Velocidades/aceleraciones maximas carro/izaje
-whmMax = (3*2/rhd)*ih; %rad/s
-wtmMax = (4/rtd)*it; %obtener de vt carro
+%whmMax = (3*2/rhd)*ih; %rad/s
+whmMax = P/Thm_Max;
+wtmMax = (4/rtd)*it; %v_m: 4 [m/s]
+v_x_max = 4; %v_m: 4 [m/s]
