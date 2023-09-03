@@ -49,7 +49,8 @@ tau_tm=1e-3; %[s] Constante de tiempo de Modulador de Torque en motor-drive de c
 Ttm_Max=3e3; %[N.m] Torque máximo de motorización/frenado regenerativo del motor
 %Parámetros equivalentes
 Meq=Mt+(it^2*Jtm_tb+Jtd)/rtd^2;
-beq=bt+(btd+btm*it^2)/rtd^2;
+beq=bt+(btd+btm*it^2)/rtd^2;   %para carro solo uso lo del parentesis
+Jeq = it^2*Jtm_tb+Jtd;    %modificado para izaje
 %% Parametros PID carro/izaje
 n = 3;  %Sistema críticamente amortiguado. Igual en ambos
 pt = -beq/Meq*(it/rtd);%*(it/rtd);
