@@ -104,7 +104,14 @@ P = 956.15e3; %Potencia cte: 956.15 kW
 %whmMax = (3*2/rhd)*ih; %rad/s
 whmMax = P/Thm_Max;
 wtmMax = (4/rtd)*it; %v_m: 4 [m/s]
-v_x_max = 4; %v_m: 4 [m/s]
+v_x_max = 4; %v_m: 4 [m/s] -> por ahora lo uso para aceleracion maxima
 ml=5e4;
 ax_max = 0.8; %[m/s^2]
 ay_max = 0.75; %[m/s^2]
+
+ahmax=0.75;
+vhmax=3;
+alfahmax=((2*ahmax)/(rhd));
+whmax=((2*vhmax)/(rhd));
+atmax=0.8;
+alfatmax=atmax/rtd;
