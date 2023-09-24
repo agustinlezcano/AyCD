@@ -110,7 +110,7 @@ ax_max = 0.8; %[m/s^2]
 ay_max = 0.75; %[m/s^2]
 
 ahmax=0.75;
-vhmax=3;
+vhmax=3;  %sin carga es 1.5 
 alfahmax=((2*ahmax)/(rhd));
 whmax=((2*vhmax)/(rhd));
 atmax=0.8;
