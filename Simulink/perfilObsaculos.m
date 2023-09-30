@@ -3,11 +3,13 @@ clc, clear
 x_positions = 2.5:2.5:50;
 % Altura de los contenedores
 hy_cont = randi([0, 45], 1, 20);
-estado_cont = [x_positions; hy_cont]
+
+
 % Ancho de cada contenedor
 hx_cont = 2.5;
 boat_under_water = 20;
-
+hy_cont = hy_cont - boat_under_water; % cambio referencia
+estado_cont = [x_positions; hy_cont]
 %% Limites del grafico
 xmin = -30;
 xmax = 55;
@@ -49,13 +51,13 @@ x_actual = 0;
 for i = 1:size(x_positions,2)
     y_actual = - boat_under_water;
     x_actual = estado_cont(1,i) - hx_cont/2;
-    rectangle('Position', [x_actual y_actual hx_cont estado_cont(2,i)], 'EdgeColor', [0.9 0.05 0.1], 'LineWidth', 2, 'FaceColor', [1 0.3 0.5])
+    rectangle('Position', [x_actual y_actual hx_cont estado_cont(2,i)+ boat_under_water], 'EdgeColor', [0.9 0.05 0.1], 'LineWidth', 2, 'FaceColor', [1 0.3 0.5])
     y_actual = y_actual + hy_cont; 
 end
 hold on
 %% Grafico de posiciones deseadas
-pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont(:,5), x_positions, hy_cont)
-pos(2:end,2) = pos(2:end,2) - boat_under_water
+pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont, hy_cont, 2)
+% pos(2:end,2) = pos(2:end,2) - boat_under_water
 
 % Grafica los puntos y las líneas
 plot(pos(:, 1), pos(:, 2), 'o-', 'LineWidth', 2);
