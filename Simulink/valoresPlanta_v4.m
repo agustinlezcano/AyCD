@@ -115,3 +115,19 @@ alfahmax=((2*ahmax)/(rhd));
 whmax=((2*vhmax)/(rhd));
 atmax=0.8;
 alfatmax=atmax/rtd;
+
+%% Posiciones de referencia para consigna
+% Perfil de contenedores
+x_positions = 2.5:2.5:50;
+% Altura de los contenedores
+hy_cont = randi([0, 45], 1, 20);
+
+
+% Ancho de cada contenedor
+hx_cont = 2.5;
+boat_under_water = 20;
+hy_cont = hy_cont - boat_under_water; % cambio referencia
+estado_cont = [x_positions; hy_cont]
+
+%posicion de referencia
+pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont, hy_cont, 2)
