@@ -130,4 +130,4 @@ hy_cont = hy_cont - boat_under_water; % cambio referencia
 estado_cont = [x_positions; hy_cont]
 
 %posicion de referencia
-pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont, hy_cont, 2)
+pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont, hy_cont, 5)
