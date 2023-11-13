@@ -130,4 +130,14 @@ hy_cont = hy_cont - boat_under_water; % cambio referencia
 estado_cont = [x_positions; hy_cont]
 
 %posicion de referencia
-pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont, hy_cont, 5)
+pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont, hy_cont, 7)
+plot(pos(:, 1), pos(:, 2), 'o-', 'LineWidth', 2);
+
+% Etiqueta los ejes
+xlabel('Posición en x');
+ylabel('Altura');
+title('Trayectoria de puntos');
+hold on
+plot(estado_cont(1,:), estado_cont(2,:), 'o-', 'LineWidth', 2);
+hold on
+axis([xmin xmax ymin ymax])
