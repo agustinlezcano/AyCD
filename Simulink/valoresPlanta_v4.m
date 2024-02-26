@@ -129,7 +129,7 @@ alfatmax=atmax/rtd;
 % Posiciones deseadas: [Inicial(real), barco, barco_2, final(muelle)]
 p_referencia = [-20, 2.5; 30.5, 30; 20.5, 25; -20, 2.5];
 
-
+ 
 % Perfil de contenedores (arrancar desde -30)
 % x_positions = 1.25:2.5:(50-1.25);
 x_positions = (-30+1.25):2.5:(50-1.25);
