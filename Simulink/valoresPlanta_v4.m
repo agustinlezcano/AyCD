@@ -52,7 +52,7 @@ btm=6.0; %[N*m/rad/s] coef de friccion mecanica viscosa equiv. eje rapido
 btb=5e6; %[N*m/rad/s] Coeficiente de Fricción viscosa equivalente del Freno de operación
 Ttb_Max=5e3; %[N.m] Torque máximo de frenado del Freno de operación
 tau_tm=1e-3; %[s] Constante de tiempo de Modulador de Torque en motor-drive de carro
-Ttm_Max=3e3; %[N.m] Torque máximo de motorización/frenado regenerativo del motor
+Ttm_Max=4e3; %[N.m] Torque máximo de motorización/frenado regenerativo del motor
 %Parámetros equivalentes
 Jt_eq=Jtd+(Jtm_tb*(it^2));
 bt_eq=btd+(btm*(it^2));
