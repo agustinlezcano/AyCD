@@ -121,6 +121,9 @@ alfahmax=((2*ahmax)/(rhd));
 whmax=((2*vhmax)/(rhd));
 atmax=0.8;
 alfatmax=atmax/rtd;
+wtmMin = 0.2;
+whmMin = 0.2;
+
 %% Limites de emergencia
 xLimMinSeguridad = -30; %[m]
 xLimMaxSeguridad = 50; %[m]
