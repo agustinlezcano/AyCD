@@ -107,8 +107,7 @@ hMax = 10;
 P = 956.15e3; %Potencia cte: 956.15 kW
 
 %% Velocidades/aceleraciones maximas carro/izaje
-%whmMax = (3*2/rhd)*ih; %rad/s
-whmMax = P/Thm_Max;
+
 wtmMax = (4/rtd)*it; %v_m: 4 [m/s]
 vx_max = 4; %v_m: 4 [m/s] -> por ahora lo uso para aceleracion maxima
 ml=5e4;
@@ -123,6 +122,10 @@ atmax=0.8;
 alfatmax=atmax/rtd;
 wtmMin = 0.2;
 whmMin = 0.2;
+%whmMax = (3*2/rhd)*ih; %rad/s
+%whmMax = P/Thm_Max;
+f_izaje = 2*ih/rhd; %factor de conversion a eje motor
+whmMax = f_izaje*vhmax;
 
 %% Limites de emergencia
 xLimMinSeguridad = -30; %[m]
@@ -134,6 +137,8 @@ xLimMin = -29; %[m]
 xLimMax = 49; %[m]
 yLimMin = -19; %[m]
 yLimMax = 44; %[m]
+% limites rotativos
+%omega
 
 %% Timeout Watchdog
 WD_TIMEOUT = 500; % para hacer cada 1 segundo (muestreo 20 ms)
