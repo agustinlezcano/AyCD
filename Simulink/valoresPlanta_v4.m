@@ -31,6 +31,7 @@ bhm=18;%[N*m/rad/s]coef de friccion mecanica vizcosa eje rapido
 Thb_Max=5e4;%[N*m] torque maximo de freno de operacion
 tau_hm=1e-3;%[ms] constante del modulador de torque
 Thm_Max=2e4;%[N*m] torque maximo de motorizacion
+
 %% Parametros equivalentes izaje
 Jh_eq=Jhm_hb*ih^2+Jhd_hEb; %[kg*m^2] momento de inercia equivalente de Izaje
 bh_eq=bhm*ih^2+bhd; %[N*m/rad/s] coeficiente de friccion equivalente de Izaje
@@ -53,7 +54,7 @@ btb=5e6; %[N*m/rad/s] Coeficiente de Fricción viscosa equivalente del Freno de 
 Ttb_Max=5e3; %[N.m] Torque máximo de frenado del Freno de operación
 tau_tm=1e-3; %[s] Constante de tiempo de Modulador de Torque en motor-drive de carro
 Ttm_Max=4e3; %[N.m] Torque máximo de motorización/frenado regenerativo del motor
-%Parámetros equivalentes
+%% Parámetros equivalentes
 Jt_eq=Jtd+(Jtm_tb*(it^2));
 bt_eq=btd+(btm*(it^2));
 %% Parametros PID carro/izaje
@@ -140,6 +141,12 @@ yLimMax = 44; %[m]
 % limites rotativos
 %omega
 
+%% Parametros iniciales
+x_0 = -20;
+y_0 = 2.5;
+Tau_hm0 = 1000;
+x_0_tamb = x_0/rtd;
+y_0_izaje = 2.5*(2/rhd);
 %% Timeout Watchdog
 WD_TIMEOUT = 500; % para hacer cada 1 segundo (muestreo 20 ms)
 %% Posiciones de referencia para consigna
