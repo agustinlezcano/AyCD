@@ -6,7 +6,7 @@ xmin = -35;
 xmax = 50;
 ymin = -25;
 ymax = 55;
-%% Masa, coeficienes de friccion
+%% Masa, coeficientes de friccion
 bcx=1e6;%[N/m/s]
 bcy=1e7;%[N/m/s]
 kcy=1.8e9;%[N/m] 
@@ -57,54 +57,31 @@ Ttm_Max=4e3; %[N.m] Torque máximo de motorización/frenado regenerativo del mot
 %% Parámetros equivalentes
 Jt_eq=Jtd+(Jtm_tb*(it^2));
 bt_eq=btd+(btm*(it^2));
-%% Parametros PID carro/izaje
-% n = 3;  %Sistema subamortiguado amortiguado. Igual en ambos
-% pt = -bt_eq/Jt_eq;%*(it/rtd);
-% w_post = abs(10 * pt);
-% 
-% Meq = Mt +(Jtd+Jtm_tb*it^2)/(rtd^2)
-% %revisar Meq2-> corregir
-% Meq2 = Jt_eq*n*(1/it); %solo para obtener las constantes PID
-% KDt = Meq2 * w_post
-% KPt = Meq2 * w_post^2
-% KIt = Meq2 * w_post^3
-% 
-% 
-% ph = -bh_eq/Jh_eq;  %Polo 1 a lazo abierto (izaje)
-% w_posh = abs(10 * ph);
-% %revisar Jeq2
-% Jeq2 = Jh_eq*n*(1/ih); %solo para obtener las constantes PID
-% KDh = Jeq2 * w_posh
-% KPh = Jeq2 * w_posh^2
-% KIh = Jeq2 * w_posh^3
+
 %% PID Carro e Izaje 2
 n = 3;  %Sistema subamortiguado amortiguado. Igual en ambos
-Meq = Mt +(Jtd+Jtm_tb*it^2)/(rtd^2)
+Meq = Mt +(Jtd+Jtm_tb*it^2)/(rtd^2);
 beq = bt + bt_eq/rtd^2;
 pt = -bt_eq/Meq;%*(it/rtd);
 w_post = abs(10 * pt);
-KDt = Meq * w_post
-KPt = Meq * w_post^2
-KIt = Meq * w_post^3
+KDt = Meq * w_post;
+KPt = Meq * w_post^2;
+KIt = Meq * w_post^3;
 % KDt = 540000
 % KPt = 1.2354e06
 % KIt = 7.0661e05
 
-% Jeq = (Jhd_hEb+Jhm_hb*ih^2)/(rhd^2)
 Jeq = (Jhd_hEb+Jhm_hb*ih^2)/(rhd^2);
 %Jh_eq = bhm*ih^2+bhd;
-%bh_eq hacer
 % bh_eq = (bhm*ih^2+bhd)/(rhd^2);
 bh_eq = (bhm*ih^2+bhd)/(rhd^2);
 ph = -bh_eq/Jeq;%*(it/rtd);
 w_post = abs(10 * ph);
-KDh = Jeq * w_post
-KPh = Jeq * w_post^2
-KIh = Jeq * w_post^3
-%% 
-%Perfil de obstaculos
-hMax = 10;
+KDh = Jeq * w_post;
+KPh = Jeq * w_post^2;
+KIh = Jeq * w_post^3;
 
+% hMax = 10;
 P = 956.15e3; %Potencia cte: 956.15 kW
 
 %% Velocidades/aceleraciones maximas carro/izaje
@@ -133,13 +110,12 @@ xLimMinSeguridad = -30; %[m]
 xLimMaxSeguridad = 50; %[m]
 yLimMinSeguridad = -20; %[m]
 yLimMaxSeguridad = 45; %[m]
+
 %% Limites operativos
 xLimMin = -29; %[m]
 xLimMax = 49; %[m]
 yLimMin = -19; %[m]
 yLimMax = 44; %[m]
-% limites rotativos
-%omega
 
 %% Parametros iniciales
 x_0 = -20;
@@ -147,8 +123,10 @@ y_0 = 2.5;
 Tau_hm0 = 1000;
 x_0_tamb = x_0/rtd;
 y_0_izaje = 2.5*(2/rhd);
+
 %% Timeout Watchdog
 WD_TIMEOUT = 50; % para hacer cada 1 segundo (muestreo 20 ms)
+
 %% Posiciones de referencia para consigna
 % [-28.7500000000000,-26.2500000000000,-23.7500000000000,-21.2500000000000,-18.7500000000000,-16.2500000000000,-13.7500000000000,-11.2500000000000,-8.75000000000000,-6.25000000000000,-3.75000000000000,-1.25000000000000,1.25000000000000,3.75000000000000,6.25000000000000,8.75000000000000,11.2500000000000,13.7500000000000,16.2500000000000,18.7500000000000,21.2500000000000,23.7500000000000,26.2500000000000,28.7500000000000,31.2500000000000,33.7500000000000,36.2500000000000,38.7500000000000,41.2500000000000,43.7500000000000,46.2500000000000,48.7500000000000;
 %   0,0,0,0,0,0,0,0,0,0,0,0,17,21,-15,22,9,-16,-8,5,24,24,-13,24,24,2,16,-14,-1,22,16,24]
@@ -163,7 +141,6 @@ y0 = 2.5;
 % x_positions = 1.25:2.5:(50-1.25);
 x_positions = (-30+1.25):2.5:(50-1.25);
 % Perfil en muelle
-%hy_muelle = randi([0, 2], 1, 12);
 hy_muelle = zeros(1,12);
 % Altura de los contenedores
 hy_cont = randi([0, 45], 1, 20);
@@ -173,14 +150,7 @@ hx_cont = 2.5;
 boat_under_water = 20;
 hy_cont = hy_cont - boat_under_water; % cambio referencia
 estado_cont = [x_positions; [hy_muelle hy_cont]]
-% estado_cont = [x_positions; hy_cont]
 
-%posicion de referencia (si uso 0 es el piso) --> error en balanceo
-% la posicion final debe ser mayor a 12 (0 .. 12 muelle)
-% posicion inicial:[-20,5]
-% pos = puntosTrayectoria(4, 1.5, 20, [-20,0], estado_cont, hy_cont, 7)
-
-% calcularTrayectoria2(VX_MAX, VY_MAX, AX_MAX, dy, anchoCont, pos_f, pos_i, to_where, estado_cont)
 pos = calcularTrayectoria2_prueba(vx_max, vhmax, ax_max, Hc, hx_cont, [30.5,30], [-20,2.5], 0, estado_cont)
 plot(pos(:, 1), pos(:, 2), 'o-', 'LineWidth', 2);
 
