@@ -9,7 +9,7 @@ ymax = 55;
 %% Masa, coeficientes de friccion
 bcx=1e6;%[N/m/s]
 bcy=1e7;%[N/m/s]
-kcy=1.8e9;%[N/m] 
+kcy=1.8e9;%[N/m] as
 Yt0=45;%[m]
 Hc=2.50;%[m] ¿2.5 m?
 Ms=1.5e4;%[kg]
@@ -59,17 +59,17 @@ Jt_eq=Jtd+(Jtm_tb*(it^2));
 bt_eq=btd+(btm*(it^2));
 
 %% PID Carro e Izaje 2
-n = 3;  %Sistema subamortiguado amortiguado. Igual en ambos
+n = 3;  %Sistema criticamente amortiguado. Igual en ambos
 Meq = Mt +(Jtd+Jtm_tb*it^2)/(rtd^2);
 beq = bt + bt_eq/rtd^2;
 pt = -bt_eq/Meq;%*(it/rtd);
 w_post = abs(10 * pt);
-KDt = Meq * w_post;
-KPt = Meq * w_post^2;
-KIt = Meq * w_post^3;
-% KDt = 540000
-% KPt = 1.2354e06
-% KIt = 7.0661e05
+% KDt = Meq * w_post;
+% KPt = Meq * w_post^2;
+% KIt = Meq * w_post^3;
+KDt = 1.0127e+04;
+KPt = 1.4123e+04;
+KIt = 6.8096e+03;
 
 Jeq = (Jhd_hEb+Jhm_hb*ih^2)/(rhd^2);
 %Jh_eq = bhm*ih^2+bhd;
@@ -122,7 +122,7 @@ x_0 = -20;
 y_0 = 2.5;
 Tau_hm0 = 1000;
 x_0_tamb = x_0/rtd;
-y_0_izaje = 2.5*(2/rhd);
+y_0_izaje = 3*(2/rhd); %2.5*(2/rhd)
 
 %% Timeout Watchdog
 WD_TIMEOUT = 50; % para hacer cada 1 segundo (muestreo 20 ms)
@@ -141,9 +141,9 @@ y0 = 2.5;
 % x_positions = 1.25:2.5:(50-1.25);
 x_positions = (-30+1.25):2.5:(50-1.25);
 % Perfil en muelle
-hy_muelle = zeros(1,12);
+hy_muelle = zeros(1,13);    %12
 % Altura de los contenedores
-hy_cont = randi([0, 45], 1, 20);
+hy_cont = randi([20, 40], 1, 19); %20
 
 % Ancho de cada contenedor
 hx_cont = 2.5;
@@ -151,7 +151,7 @@ boat_under_water = 20;
 hy_cont = hy_cont - boat_under_water; % cambio referencia
 estado_cont = [x_positions; [hy_muelle hy_cont]]
 
-pos = calcularTrayectoria2_prueba(vx_max, vhmax, ax_max, Hc, hx_cont, [30.5,30], [-20,2.5], 0, estado_cont)
+pos = calcularTrayectoria2_prueba(vx_max, vhmax, ax_max, Hc, hx_cont, [estado_cont(1, 23), estado_cont(2, 23)+5], [-20,2.5], 0, estado_cont); % [30.5,30] en posicion final
 plot(pos(:, 1), pos(:, 2), 'o-', 'LineWidth', 2);
 
 % Etiqueta los ejes
@@ -160,7 +160,7 @@ ylabel('Altura');
 title('Trayectoria de puntos');
 hold on
 % plot(estado_cont(1,:), estado_cont(2,:), 'o-', 'LineWidth', 2);
-b = bar(estado_cont(1,13:32), estado_cont(2,13:32), 1);
+b = bar(estado_cont(1,14:32), estado_cont(2,14:32), 1); % estado_cont(1,13:32)
 b(1).BaseValue = -20;
 hold on
 %viga voladiza
